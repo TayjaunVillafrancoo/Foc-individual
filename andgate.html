@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AND Gate Simulation</title>
+    <style>
+        .button {
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // Declare the states for the images
+    var inputOneState = false; // First input state
+    var inputTwoState = false; // Second input state
+
+    function toggleImage() {
+        // Toggle the state of the first input image
+        var img = document.getElementById("toggleImage");
+        inputOneState = !inputOneState; // Toggle the first input state
+        // Change the image based on the state
+        img.src = inputOneState ? "onbutton.png" : "offbutton.png";
+        updateAndGateImage(); // Update the AND gate image after toggling
+    }
+
+    function toggleImage2() {
+        // Toggle the state of the second input image
+        var img = document.getElementById("toggleImage2");
+        inputTwoState = !inputTwoState; // Toggle the second input state
+        // Change the image based on the state
+        img.src = inputTwoState ? "onbutton.png" : "offbutton.png";
+        updateAndGateImage(); // Update the AND gate image after toggling
+    }
+
+    function updateAndGateImage() {
+        var andGateImage = document.getElementById("andGate");
+
+        // Check the states of both inputs and update the AND gate image accordingly
+        if (inputOneState && inputTwoState) {
+            andGateImage.src = "and2on.PNG"; // Both inputs are true, AND gate on
+        } else if (inputOneState && !inputTwoState) {
+            andGateImage.src = "andonoff.PNG"; // First is on, second is off
+        } else if (!inputOneState && inputTwoState) {
+            andGateImage.src = "andoffon.PNG"; // First is off, second is on
+        } else {
+            andGateImage.src = "and2off.PNG"; // Both are false, AND gate off
+        }
+    }
+</script>
+
+
+<table style="width:100%">
+  <tr>
+    <td>
+        <img src="offbutton.png" id="toggleImage" onclick="toggleImage(); toggleInputOne();"/>
+        <br>
+        <img src="offbutton.png" id="toggleImage2" onclick="toggleImage2(); toggleInputTwo();"/> 
+    </td>
+    <td><img id="andGate" src="and2off.PNG"></td>
+  </tr>
+</table>
+
+<a href="index.html">Back to Home</a>
+
+</body>
+</html>
